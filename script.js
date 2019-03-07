@@ -1,7 +1,5 @@
 $( document ).ready(function() {
     var web3 = new Web3('https://mainnet.infura.io/v3/67b5841e21524cc9b6d47bb88f549acb');
-    
-    
     var meOwContract = "0x3F5A11F69534290458687292Bc72dd96A7130B65";
     
     var meOwAbi = [{"constant":false,"inputs":[{"name":"_username","type":"string"},{"name":"_name","type":"string"},{"name":"_bio","type":"string"},{"name":"_about","type":"string"}],"name":"register","outputs":[{"name":"_status","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_username","type":"string"},{"name":"_positive","type":"bool"}],"name":"review","outputs":[{"name":"_status","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_username","type":"string"},{"name":"_admin","type":"address"},{"name":"_name","type":"string"},{"name":"_bio","type":"string"},{"name":"_about","type":"string"}],"name":"update","outputs":[{"name":"_status","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"profiles","outputs":[{"name":"admin","type":"address"},{"name":"username","type":"string"},{"name":"name","type":"string"},{"name":"bio","type":"string"},{"name":"about","type":"string"},{"name":"positive_counter","type":"uint256"},{"name":"negative_counter","type":"uint256"},{"name":"time","type":"uint256"},{"name":"update_time","type":"uint256"},{"name":"status","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalUsers","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"bytes32"}],"name":"counters","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
@@ -162,6 +160,11 @@ $( document ).ready(function() {
             
             $(".pos").text(_pdt.positive_counter);
             $(".neg").text(_pdt.negative_counter);
+        });
+        
+        
+        meOw.methods.totalUsers().call(function(err1, _dt){
+            $(".tot b").text(_dt);
         });
     }
     
