@@ -42,6 +42,26 @@ h1 {
     font-weight: 100;
 }
 
+.search_box {
+    width: 390px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.search_box input {
+    width: 300px;
+    padding: 10px;
+}
+
+.search_box .cbtn {
+    display: inline-block;
+    padding: 9px;
+    font-size: 14px;
+    margin-left: -4px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
 .tot {
     position: absolute;
     left: 20px;
