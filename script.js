@@ -58,6 +58,13 @@ $( document ).ready(function() {
         $(".editbox").show();
     });
     
+    $(".search").click(function(){
+        var q = $("#q").val();
+        if(q !== ""){
+            load_profile(q);
+        }
+    });
+    
     $(".create_btn").click(function(){
         _error("cbox", "");
         
@@ -136,11 +143,37 @@ $( document ).ready(function() {
         var lhash = location.hash;
         
         if(lhash == ''){
-            var uname = "demo";
-            history.pushState(null, null, '#'+uname);
+            var uname = "openweb";
         } else {
             var uname = lhash.substr(1);
         }
+        
+        load_profile(uname);
+        
+        
+        meOw.methods.totalUsers().call(function(err1, _dt){
+            $(".tot b").text(_dt);
+        });
+    }
+    
+    function load_profile(uname){
+        history.pushState(null, null, '#'+uname);
+        
+        $("#_e_address").val("-");
+        $("#_e_name").val("-");
+        $("#_e_bio").val("-");
+        $("#_e_about").val("-");
+
+
+        $(".name").text("-");
+        $(".username").text("-");
+        $(".username").data('uname', "");
+        $(".address").text("-");
+        $(".short").text("-");
+        $(".about").text("-");
+
+        $(".pos").text("0");
+        $(".neg").text("0");
         
         var unameBytes = web3.utils.fromAscii(uname);
         meOw.methods.profiles(unameBytes).call(function(err1, _pdt){
@@ -161,13 +194,7 @@ $( document ).ready(function() {
             $(".pos").text(_pdt.positive_counter);
             $(".neg").text(_pdt.negative_counter);
         });
-        
-        
-        meOw.methods.totalUsers().call(function(err1, _dt){
-            $(".tot b").text(_dt);
-        });
     }
-    
     
     
     load();
